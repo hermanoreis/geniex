@@ -176,3 +176,18 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Orbitron Font Classes */
+.orbitron-logo {
+  font-family: "Orbitron", var(--font-orbitron), sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.orbitron-title {
+  font-family: "Orbitron", var(--font-orbitron), sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
