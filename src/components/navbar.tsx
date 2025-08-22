@@ -1,5 +1,11 @@
 "use client"
-import { Search, Bell, MessageCircle, HelpCircle, Menu, ChevronLeft } from "lucide-react"
+import { 
+  MessageSquare01, 
+  LayoutLeft, 
+  SearchLg, 
+  Bell01, 
+  HelpCircle 
+} from "@untitledui/icons"
 
 interface NavbarProps {
   sidebarCollapsed: boolean
@@ -16,14 +22,14 @@ export default function Navbar({ sidebarCollapsed, setSidebarCollapsed }: Navbar
             onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
             className="text-muted-foreground hover:text-foreground transition-colors"
           >
-            {sidebarCollapsed ? <Menu size={20} /> : <ChevronLeft size={20} />}
+            <LayoutLeft size={20} />
           </button>
         </div>
 
         {/* Center - Search */}
         <div className="flex-1 flex justify-center">
           <div className="relative">
-            <Search size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
+            <SearchLg size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
             <input
               type="text"
               placeholder="Pesquisar"
@@ -43,11 +49,11 @@ export default function Navbar({ sidebarCollapsed, setSidebarCollapsed }: Navbar
           </div>
 
           <button className="text-muted-foreground hover:text-foreground relative transition-colors">
-            <MessageCircle size={20} />
+            <MessageSquare01 size={20} />
           </button>
 
           <button className="text-muted-foreground hover:text-foreground relative transition-colors">
-            <Bell size={20} />
+            <Bell01 size={20} />
             <span className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-destructive rounded-full flex items-center justify-center text-[10px] text-destructive-foreground font-medium">
               2
             </span>

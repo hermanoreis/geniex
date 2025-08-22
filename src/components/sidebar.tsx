@@ -1,15 +1,15 @@
 "use client"
 import {
-  Home,
-  GraduationCap,
-  CheckSquare,
-  TrendingUp,
-  BookOpen,
+  HomeSmile,
+  FileCheck02,
+  GraduationHat02,
+  Route,
+  BookClosed,
   Calendar,
-  MessageCircle,
-  FileText,
-  PenTool,
-} from "lucide-react"
+  MessageSquare01,
+  List,
+  Edit04,
+} from "@untitledui/icons"
 import { NavUser } from "./nav-user" // Import NavUser component
 
 interface SidebarProps {
@@ -20,17 +20,17 @@ interface SidebarProps {
 
 export default function Sidebar({ activeItem, setActiveItem, sidebarCollapsed }: SidebarProps) {
   const agendaItems = [
-    { name: "Cursos", icon: GraduationCap },
-    { name: "Tarefas", icon: CheckSquare }, // Added Tarefas button below Cursos with CheckSquare icon
-    { name: "Trilhas", icon: TrendingUp },
-    { name: "Biblioteca", icon: BookOpen },
+    { name: "Cursos", icon: GraduationHat02 },
+    { name: "Tarefas", icon: List },
+    { name: "Trilhas", icon: Route },
+    { name: "Biblioteca", icon: BookClosed },
     { name: "Cronograma", icon: Calendar },
-    { name: "Genie Bot", icon: MessageCircle },
+    { name: "Genie Bot", icon: MessageSquare01 },
   ]
 
   const funcionalidadesItems = [
-    { name: "Simulados", icon: FileText },
-    { name: "Redação", icon: PenTool },
+    { name: "Simulados", icon: FileCheck02 },
+    { name: "Redação", icon: Edit04 },
   ]
 
   const userData = {
@@ -67,7 +67,7 @@ export default function Sidebar({ activeItem, setActiveItem, sidebarCollapsed }:
               }`}
               title={sidebarCollapsed ? "Página Inicial" : undefined}
             >
-              <Home size={18} />
+              <HomeSmile size={18} />
               {!sidebarCollapsed && <span className="text-sm">Página Inicial</span>}
             </button>
           </nav>
