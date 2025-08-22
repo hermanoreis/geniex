@@ -9,18 +9,21 @@ import {
 
 interface NavbarProps {
   sidebarCollapsed: boolean
-  setSidebarCollapsed: (collapsed: boolean) => void
+  setSidebarCollapsed: () => void
+  isMobile?: boolean
+  sidebarOpen?: boolean
 }
 
-export default function Navbar({ sidebarCollapsed, setSidebarCollapsed }: NavbarProps) {
+export default function Navbar({ sidebarCollapsed, setSidebarCollapsed, isMobile = false, sidebarOpen = false }: NavbarProps) {
   return (
-    <header className="bg-background border-b border-border px-6 py-4">
+    <header className="bg-background border-b border-border px-6 py-3 h-[58px]">
       <div className="flex items-center justify-between">
         {/* Left Side - Toggle Button */}
         <div className="flex items-center">
           <button
-            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+            onClick={setSidebarCollapsed}
             className="text-muted-foreground hover:text-foreground transition-colors"
+            aria-label={isMobile ? (sidebarOpen ? "Fechar menu" : "Abrir menu") : (sidebarCollapsed ? "Expandir sidebar" : "Recolher sidebar")}
           >
             <LayoutLeft size={20} />
           </button>
@@ -33,7 +36,7 @@ export default function Navbar({ sidebarCollapsed, setSidebarCollapsed }: Navbar
             <input
               type="text"
               placeholder="Pesquisar"
-              className="bg-accent border border-border rounded-lg pl-10 pr-16 py-2 text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary w-80"
+              className="bg-accent border border-border rounded-lg pl-10 pr-16 py-1.5 text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary w-80 h-9"
             />
             <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground text-xs">
               ⌘ K
@@ -42,7 +45,7 @@ export default function Navbar({ sidebarCollapsed, setSidebarCollapsed }: Navbar
         </div>
 
         {/* Right Side */}
-        <div className="flex items-center space-x-6">
+        <div className="flex items-center space-x-4">
           <div className="flex items-center space-x-1">
             <span className="text-lg">🔥</span>
             <span className="text-muted-foreground text-sm font-medium">0</span>
