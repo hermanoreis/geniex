@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
-import { LogOut, Settings, User, Sun, Moon } from "lucide-react"
+import { LogOut, Settings, User, Sun, Moon, Waves } from "lucide-react"
 import { useTheme } from "@/components/theme-provider"
 
 interface NavUserProps {
@@ -30,6 +30,36 @@ export function NavUser({ user, collapsed = false }: NavUserProps) {
     .map((n) => n[0])
     .join("")
     .toUpperCase()
+
+  // Theme cycling logic: light -> dark -> navy -> light
+  const getNextTheme = () => {
+    switch (theme) {
+      case "light":
+        return "dark"
+      case "dark":
+        return "navy"
+      case "navy":
+        return "light"
+      default:
+        return "light"
+    }
+  }
+
+  // Get theme display info
+  const getThemeInfo = () => {
+    switch (theme) {
+      case "light":
+        return { icon: Sun, label: "Modo Claro" }
+      case "dark":
+        return { icon: Moon, label: "Modo Escuro" }
+      case "navy":
+        return { icon: Waves, label: "Modo Navy" }
+      default:
+        return { icon: Sun, label: "Modo Claro" }
+    }
+  }
+
+  const themeInfo = getThemeInfo()
 
   return (
     <DropdownMenu>
@@ -68,10 +98,10 @@ export function NavUser({ user, collapsed = false }: NavUserProps) {
         <DropdownMenuSeparator />
         <DropdownMenuItem
           className="hover:bg-accent focus:bg-accent"
-          onClick={() => setTheme(theme === "navy" ? "light" : "navy")}
+          onClick={() => setTheme(getNextTheme())}
         >
-          {theme === "navy" ? <Sun className="mr-2 h-4 w-4" /> : <Moon className="mr-2 h-4 w-4" />}
-          <span>{theme === "navy" ? "Modo Claro" : "Modo Navy"}</span>
+          <themeInfo.icon className="mr-2 h-4 w-4" />
+          <span>{themeInfo.label}</span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem className="hover:bg-accent focus:bg-accent text-destructive">

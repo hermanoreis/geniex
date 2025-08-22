@@ -2,7 +2,7 @@
 
 import * as React from "react"
 
-type Theme = "light" | "navy"
+type Theme = "light" | "dark" | "navy"
 
 type ThemeProviderProps = {
   children: React.ReactNode
@@ -16,7 +16,7 @@ type ThemeProviderState = {
 }
 
 const initialState: ThemeProviderState = {
-  theme: "navy",
+  theme: "light",
   setTheme: () => null,
 }
 
@@ -24,7 +24,7 @@ const ThemeProviderContext = React.createContext<ThemeProviderState>(initialStat
 
 export function ThemeProvider({
   children,
-  defaultTheme = "navy",
+  defaultTheme = "light",
   storageKey = "geniex-ui-theme",
   ...props
 }: ThemeProviderProps) {
@@ -45,15 +45,13 @@ export function ThemeProvider({
     
     const root = window.document.documentElement
 
-    root.classList.remove("light", "dark")
+    // Remove all theme classes
+    root.classList.remove("light", "dark", "navy")
 
-    if (theme === "navy") {
-      root.classList.add("dark")
-    } else {
-      root.classList.add("light")
-    }
+    // Add the current theme class
+    root.classList.add(theme)
 
-    console.log("[v0] Theme changed to:", theme, "Classes:", root.classList.toString())
+    console.log("[GENIEX] Theme changed to:", theme, "Classes:", root.classList.toString())
   }, [theme, mounted])
 
   const value = {

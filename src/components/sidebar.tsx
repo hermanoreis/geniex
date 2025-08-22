@@ -21,7 +21,6 @@ interface SidebarProps {
 export default function Sidebar({ activeItem, setActiveItem, sidebarCollapsed }: SidebarProps) {
   const agendaItems = [
     { name: "Cursos", icon: GraduationHat02 },
-    { name: "Tarefas", icon: List },
     { name: "Trilhas", icon: Route },
     { name: "Biblioteca", icon: BookClosed },
     { name: "Cronograma", icon: Calendar },
@@ -34,7 +33,7 @@ export default function Sidebar({ activeItem, setActiveItem, sidebarCollapsed }:
   ]
 
   const userData = {
-    name: "Fernando Rodrigues",
+    name: "Hermano Reis",
     studentClass: "3ª Série B", // Changed from email to studentClass to represent student's class allocation
     image: undefined, // No image provided, will use initials
   }
@@ -69,6 +68,18 @@ export default function Sidebar({ activeItem, setActiveItem, sidebarCollapsed }:
             >
               <HomeSmile size={18} />
               {!sidebarCollapsed && <span className="text-sm">Página Inicial</span>}
+            </button>
+            <button
+              onClick={() => setActiveItem("Tarefas")}
+              className={`w-full flex items-center ${sidebarCollapsed ? "justify-center px-3" : "space-x-3 px-3"} py-2 rounded-lg text-left transition-colors ${
+                activeItem === "Tarefas"
+                  ? "bg-primary text-primary-foreground"
+                  : "text-muted-foreground hover:bg-accent hover:text-foreground"
+              }`}
+              title={sidebarCollapsed ? "Tarefas" : undefined}
+            >
+              <List size={18} />
+              {!sidebarCollapsed && <span className="text-sm">Tarefas</span>}
             </button>
           </nav>
         </div>
