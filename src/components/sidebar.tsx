@@ -9,6 +9,7 @@ import {
   MessageSquare01,
   List,
   Edit04,
+  Trophy01,
 } from "@untitledui/icons"
 import { NavUser } from "./nav-user" // Import NavUser component
 import { useRouter } from "next/navigation"
@@ -93,6 +94,18 @@ export default function Sidebar({ activeItem, setActiveItem, sidebarCollapsed, i
             >
               <List size={18} />
               {(!sidebarCollapsed || isMobile) && <span className="text-sm">Tarefas</span>}
+            </button>
+            <button
+              onClick={() => handleItemClick("Conquistas", "/achievements")}
+              className={`w-full flex items-center ${(sidebarCollapsed && !isMobile) ? "justify-center px-3" : "space-x-3 px-3"} py-2 rounded-lg text-left transition-colors ${
+                activeItem === "Conquistas"
+                  ? "bg-primary text-primary-foreground"
+                  : "text-muted-foreground hover:bg-accent hover:text-foreground"
+              }`}
+              title={(sidebarCollapsed && !isMobile) ? "Conquistas" : undefined}
+            >
+              <Trophy01 size={18} />
+              {(!sidebarCollapsed || isMobile) && <span className="text-sm">Conquistas</span>}
             </button>
           </nav>
         </div>

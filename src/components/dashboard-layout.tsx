@@ -30,6 +30,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       case "/genie-bot":
         setActiveItem("Genie Bot")
         break
+      case "/achievements":
+        setActiveItem("Conquistas")
+        break
       default:
         // Default to homepage if unknown route
         setActiveItem("Página Inicial")
