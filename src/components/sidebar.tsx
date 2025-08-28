@@ -11,6 +11,8 @@ import {
   Edit04,
 } from "@untitledui/icons"
 import { NavUser } from "./nav-user" // Import NavUser component
+import { useRouter } from "next/navigation"
+import { useUser } from "./user-provider"
 
 interface SidebarProps {
   activeItem: string
@@ -21,12 +23,15 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ activeItem, setActiveItem, sidebarCollapsed, isMobile = false, onItemClick }: SidebarProps) {
+  const router = useRouter()
+  const { user } = useUser()
+  
   const agendaItems = [
-    { name: "Cursos", icon: GraduationHat02 },
-    { name: "Trilhas", icon: Route },
-    { name: "Biblioteca", icon: BookClosed },
-    { name: "Cronograma", icon: Calendar },
-    { name: "Genie Bot", icon: MessageSquare01 },
+    { name: "Cursos", icon: GraduationHat02, path: "/cursos" },
+    { name: "Trilhas", icon: Route, path: "/" },
+    { name: "Biblioteca", icon: BookClosed, path: "/" },
+    { name: "Cronograma", icon: Calendar, path: "/" },
+    { name: "Genie Bot", icon: MessageSquare01, path: "/genie-bot" },
   ]
 
   const funcionalidadesItems = [
@@ -34,14 +39,11 @@ export default function Sidebar({ activeItem, setActiveItem, sidebarCollapsed, i
     { name: "Redação", icon: Edit04 },
   ]
 
-  const userData = {
-    name: "Hermano Reis",
-    studentClass: "3ª Série B", // Changed from email to studentClass to represent student's class allocation
-    image: undefined, // No image provided, will use initials
-  }
-
-  const handleItemClick = (itemName: string) => {
+  const handleItemClick = (itemName: string, path?: string) => {
     setActiveItem(itemName)
+    if (path) {
+      router.push(path)
+    }
     if (onItemClick) {
       onItemClick()
     }
@@ -69,7 +71,7 @@ export default function Sidebar({ activeItem, setActiveItem, sidebarCollapsed, i
         <div className={`${(sidebarCollapsed && !isMobile) ? "px-2" : "px-6"} mb-6`}>
           <nav className="space-y-2">
             <button
-              onClick={() => handleItemClick("Página Inicial")}
+              onClick={() => handleItemClick("Página Inicial", "/")}
               className={`w-full flex items-center ${(sidebarCollapsed && !isMobile) ? "justify-center px-3" : "space-x-3 px-3"} py-2 rounded-lg text-left transition-colors ${
                 activeItem === "Página Inicial"
                   ? "bg-primary text-primary-foreground"
@@ -81,7 +83,7 @@ export default function Sidebar({ activeItem, setActiveItem, sidebarCollapsed, i
               {(!sidebarCollapsed || isMobile) && <span className="text-sm">Página Inicial</span>}
             </button>
             <button
-              onClick={() => handleItemClick("Tarefas")}
+              onClick={() => handleItemClick("Tarefas", "/")}
               className={`w-full flex items-center ${(sidebarCollapsed && !isMobile) ? "justify-center px-3" : "space-x-3 px-3"} py-2 rounded-lg text-left transition-colors ${
                 activeItem === "Tarefas"
                   ? "bg-primary text-primary-foreground"
@@ -105,7 +107,7 @@ export default function Sidebar({ activeItem, setActiveItem, sidebarCollapsed, i
               return (
                 <button
                   key={item.name}
-                  onClick={() => handleItemClick(item.name)}
+                  onClick={() => handleItemClick(item.name, item.path)}
                   className={`w-full flex items-center ${(sidebarCollapsed && !isMobile) ? "justify-center px-3" : "space-x-3 px-3"} py-2 rounded-lg text-left transition-colors ${
                     isActive
                       ? "bg-primary text-primary-foreground"
@@ -150,7 +152,7 @@ export default function Sidebar({ activeItem, setActiveItem, sidebarCollapsed, i
 
       {/* User Profile - Replaced with NavUser component */}
       <div className={`${(sidebarCollapsed && !isMobile) ? "p-4" : "p-6"} pt-8`}>
-        <NavUser user={userData} collapsed={sidebarCollapsed && !isMobile} />
+        <NavUser user={user} collapsed={sidebarCollapsed && !isMobile} />
       </div>
     </div>
   )

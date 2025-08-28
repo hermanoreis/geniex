@@ -2,10 +2,10 @@
 import { 
   MessageSquare01, 
   LayoutLeft, 
-  SearchLg, 
   Bell01, 
   HelpCircle 
 } from "@untitledui/icons"
+import { SearchCommand } from "./search-command"
 
 interface NavbarProps {
   sidebarCollapsed: boolean
@@ -31,17 +31,7 @@ export default function Navbar({ sidebarCollapsed, setSidebarCollapsed, isMobile
 
         {/* Center - Search */}
         <div className="flex-1 flex justify-center">
-          <div className="relative">
-            <SearchLg size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
-            <input
-              type="text"
-              placeholder="Pesquisar"
-              className="bg-accent border border-border rounded-lg pl-10 pr-16 py-1.5 text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary w-80 h-9"
-            />
-            <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground text-xs">
-              ⌘ K
-            </span>
-          </div>
+          <SearchCommand />
         </div>
 
         {/* Right Side */}

@@ -1,15 +1,28 @@
 import DashboardLayout from "@/components/dashboard-layout"
+import ContinueStudying from "@/components/continue-studying"
+import StudyStreak from "@/components/study-streak"
+import MyTasks from "@/components/my-tasks"
+import ReviewContent from "@/components/review-content"
+import MyXray from "@/components/my-xray"
 
 export default function HomePage() {
   return (
     <DashboardLayout>
-      <div className="p-6">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-2xl font-bold text-foreground mb-6">Bem-vindo ao <span className="orbitron-title">GENIEX</span></h1>
-          <div className="bg-card rounded-lg p-6 border border-border">
-            <p className="text-muted-foreground">
-              Esta é a página inicial do seu dashboard. O conteúdo das páginas será renderizado aqui.
-            </p>
+      <div className="p-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col lg:flex-row gap-6">
+            {/* Left column - spans ~66% width (8/12 columns equivalent) */}
+            <div className="flex-1 lg:flex-[2] flex flex-col gap-6">
+              <ContinueStudying />
+              <MyTasks />
+            </div>
+
+            {/* Right column - spans ~33% width (4/12 columns equivalent) */}
+            <div className="lg:flex-1 flex flex-col gap-6">
+              <StudyStreak />
+              <ReviewContent />
+              <MyXray />
+            </div>
           </div>
         </div>
       </div>
