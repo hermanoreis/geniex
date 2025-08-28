@@ -24,7 +24,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       case "/":
         setActiveItem("Página Inicial")
         break
-      case "/cursos":
+      case "/courses":
         setActiveItem("Cursos")
         break
       case "/genie-bot":

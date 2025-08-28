@@ -27,7 +27,7 @@ export default function Sidebar({ activeItem, setActiveItem, sidebarCollapsed, i
   const { user } = useUser()
   
   const agendaItems = [
-    { name: "Cursos", icon: GraduationHat02, path: "/cursos" },
+    { name: "Cursos", icon: GraduationHat02, path: "/courses" },
     { name: "Trilhas", icon: Route, path: "/" },
     { name: "Biblioteca", icon: BookClosed, path: "/" },
     { name: "Cronograma", icon: Calendar, path: "/" },
