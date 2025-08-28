@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 import { Search, ChevronDown } from "lucide-react"
 import DashboardLayout from "@/components/dashboard-layout"
+import Image from "next/image"
 
 export default function CoursesPage() {
   const allCategories = [
@@ -111,9 +112,11 @@ export default function CoursesPage() {
             {courses.map((course) => (
               <Card key={course.id} className="overflow-hidden">
                 <div className="aspect-video bg-muted flex items-center justify-center p-4">
-                  <img
+                  <Image
                     src={course.image || "/placeholder.svg"}
                     alt={course.title}
+                    width={400}
+                    height={225}
                     className="max-w-full max-h-full object-contain"
                   />
                 </div>

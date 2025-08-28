@@ -203,36 +203,7 @@ export default function AchievementsPage() {
     }
   }
 
-  const getCategoryIcon = (category: string) => {
-    switch (category) {
-      case "Sequência":
-        return Flame
-      case "Domínio de Área":
-        return BookOpen
-      case "Domínio de Matéria":
-        return Target
-      case "Por Atividade":
-        return Zap
-      case "Eventos Especiais":
-        return Star
-      case "CNH - Legislação":
-        return BookOpen
-      case "CNH - Direção Defensiva":
-        return Shield
-      case "CNH - Primeiros Socorros":
-        return Heart
-      case "CNH - Meio Ambiente":
-        return Leaf
-      case "CNH - Sinalização":
-        return AlertTriangle
-      case "CNH - Mecânica":
-        return Car
-      case "CNH - Simulado":
-        return Trophy
-      default:
-        return Trophy
-    }
-  }
+
 
   const unlockedAchievements = achievements.filter((a) => a.unlocked)
   const inProgressAchievements = achievements.filter((a) => !a.unlocked)
