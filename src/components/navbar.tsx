@@ -38,7 +38,7 @@ export default function Navbar({ sidebarCollapsed, setSidebarCollapsed, isMobile
         <div className="flex items-center space-x-4">
           <div className="flex items-center space-x-1">
             <span className="text-lg">🔥</span>
-            <span className="text-muted-foreground text-sm font-medium">0</span>
+            <span className="text-muted-foreground text-sm font-medium">6</span>
           </div>
 
           <button className="text-muted-foreground hover:text-foreground relative transition-colors">
@@ -47,7 +47,7 @@ export default function Navbar({ sidebarCollapsed, setSidebarCollapsed, isMobile
 
           <button className="text-muted-foreground hover:text-foreground relative transition-colors">
             <Bell01 size={20} />
-            <span className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-destructive rounded-full flex items-center justify-center text-[10px] text-destructive-foreground font-medium">
+            <span className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-destructive rounded-full flex items-center justify-center text-[10px] text-white font-medium">
               2
             </span>
           </button>

@@ -1,8 +1,14 @@
 import { Card } from "@/components/ui/card"
 import { Menubar, MenubarMenu, MenubarTrigger } from "@/components/ui/menubar"
 import Image from "next/image"
+import { DataTable } from "@/components/tasks/data-table"
+import { columns } from "@/components/tasks/columns"
+import { mockTasks } from "@/types/task"
 
 export default function MyTasks() {
+  // Filter tasks based on the selected tab (for now showing all tasks)
+  const tasks = mockTasks
+
   return (
     <Card className="p-6 h-full relative">
       {/* Image positioned at top-right with 8px distance */}
@@ -36,9 +42,9 @@ export default function MyTasks() {
           </div>
         </div>
 
-        <div className="flex-1 flex flex-col">
-          <div className="space-y-3">
-            <p className="text-sm text-muted-foreground">Suas tarefas de hoje aparecerão aqui</p>
+        <div className="flex-1 flex flex-col min-h-0">
+          <div className="flex-1 overflow-auto">
+            <DataTable columns={columns} data={tasks} />
           </div>
         </div>
       </div>
