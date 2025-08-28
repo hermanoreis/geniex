@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Mic, BookOpen, FileText, HelpCircle, Lightbulb, Send } from "lucide-react"
 import { useUser } from "../../../components/user-provider"
+import Image from "next/image"
 
 export default function GenieContent() {
   const [message, setMessage] = useState("")
@@ -40,6 +41,17 @@ export default function GenieContent() {
       {/* Main content */}
       <div className="flex flex-col items-center justify-center flex-1 p-6">
         <div className="w-full max-w-2xl mx-auto">
+          {/* Chat icon */}
+          <div className="text-center mb-6">
+            <Image
+              src="/chat-icon.png"
+              alt="Chat Icon"
+              width={150}
+              height={150}
+              className="mx-auto"
+            />
+          </div>
+          
           <div className="text-center mb-4">
             <h1 className="text-3xl font-bold text-foreground">Olá, {firstName}</h1>
           </div>
