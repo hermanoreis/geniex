@@ -24,7 +24,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       case "/":
         setActiveItem("Página Inicial")
         break
-      case "/courses":
+      case "/courselist":
         setActiveItem("Cursos")
         break
       case "/genie-bot":
@@ -34,8 +34,13 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         setActiveItem("Conquistas")
         break
       default:
-        // Default to homepage if unknown route
-        setActiveItem("Página Inicial")
+        // Check if it's a course page
+        if (pathname.startsWith("/course/")) {
+          setActiveItem("Cursos")
+        } else {
+          // Default to homepage if unknown route
+          setActiveItem("Página Inicial")
+        }
     }
   }, [pathname])
 

@@ -83,7 +83,7 @@ export function SearchCommand() {
               <span>Início</span>
             </CommandItem>
             <CommandItem
-              onSelect={() => runCommand(() => router.push("/cursos"))}
+              onSelect={() => runCommand(() => router.push("/courselist"))}
             >
               <BookOpen className="mr-2 h-4 w-4" />
               <span>Cursos</span>

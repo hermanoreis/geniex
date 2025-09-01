@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Search, ChevronDown } from "lucide-react"
 import DashboardLayout from "@/components/dashboard-layout"
 import Image from "next/image"
+import Link from "next/link"
 
 export default function CoursesPage() {
   const allCategories = [
@@ -34,11 +35,11 @@ export default function CoursesPage() {
     },
     {
       id: 2,
-      category: "AUTOCONHECIMENTO",
-      title: "Tomada de Decisões Pessoais",
+      category: "BIOLOGIA",
+      title: "Explorando o DNA",
       description:
-        "Ao longo deste curso, você aprenderá a tomar decisões mais conscientes e alinhadas com seus valores.",
-      image: "/placeholder.svg?height=200&width=300",
+        "Compreender a estrutura, função e aplicações do DNA na biologia moderna. Ideal para estudantes que estão se preparando para o ENEM ou querem aprofundar seus conhecimentos em genética.",
+      image: "/exploring-dna.png",
     },
     {
       id: 3,
@@ -110,24 +111,36 @@ export default function CoursesPage() {
           {/* Course cards grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {courses.map((course) => (
-              <Card key={course.id} className="overflow-hidden">
-                <div className="aspect-video bg-muted flex items-center justify-center p-4">
-                  <Image
-                    src={course.image || "/placeholder.svg"}
-                    alt={course.title}
-                    width={400}
-                    height={225}
-                    className="max-w-full max-h-full object-contain"
-                  />
-                </div>
-                <CardContent className="p-6">
-                  <div className="mb-3">
-                    <span className="text-muted-foreground text-xs font-medium tracking-wider">{course.category}</span>
+              <Link key={course.id} href={`/course/${course.id}`}>
+                <Card className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
+                  <div className="aspect-video bg-muted flex items-center justify-center p-4">
+                    <Image
+                      src={course.image || "/placeholder.svg"}
+                      alt={course.title}
+                      width={400}
+                      height={225}
+                      className="max-w-full max-h-full object-contain"
+                    />
                   </div>
-                  <h3 className="text-foreground text-xl font-semibold mb-3">{course.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{course.description}</p>
-                </CardContent>
-              </Card>
+                  <CardContent className="p-6">
+                    <div className="mb-3">
+                      <span className="text-muted-foreground text-xs font-medium tracking-wider">{course.category}</span>
+                    </div>
+                    <h3 className="text-foreground text-xl font-semibold mb-3">{course.title}</h3>
+                    <div className="relative group">
+                      <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
+                        {course.description}
+                      </p>
+                      {/* Tooltip with full description */}
+                      <div className="absolute bottom-0 left-0 right-0 bg-background/95 backdrop-blur-sm border border-border rounded-lg p-4 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10 transform translate-y-2 group-hover:translate-y-0">
+                        <p className="text-muted-foreground text-sm leading-relaxed">
+                          {course.description}
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>
