@@ -2,7 +2,6 @@
 
 import { ChevronDown, Tool02 } from "@untitledui/icons"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
 
 interface ChatHeaderProps {
   title: string
