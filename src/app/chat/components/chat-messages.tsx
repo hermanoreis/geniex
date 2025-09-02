@@ -34,7 +34,7 @@ export default function ChatMessages({ messages }: ChatMessagesProps) {
       <div className="max-w-4xl mx-auto px-6 py-6 space-y-6">
         {messages.map((message) => {
           const content = getMessageContent(message)
-          const timestamp = message.createdAt ? new Date(message.createdAt) : new Date()
+          const timestamp = new Date()
           
           return (
             <div
