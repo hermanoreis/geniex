@@ -5,7 +5,7 @@ import { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
 import Sidebar from "./sidebar"
 import Navbar from "./navbar"
-import { UserProvider } from "./user-provider"
+import { UserProvider } from "../user-provider"
 
 interface DashboardLayoutProps {
   children: React.ReactNode

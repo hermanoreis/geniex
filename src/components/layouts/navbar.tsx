@@ -5,7 +5,7 @@ import {
   Bell01, 
   HelpCircle 
 } from "@untitledui/icons"
-import { SearchCommand } from "./search-command"
+import { SearchCommand } from "../search-command"
 
 interface NavbarProps {
   sidebarCollapsed: boolean

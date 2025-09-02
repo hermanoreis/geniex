@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 import { Search, ChevronDown } from "lucide-react"
-import DashboardLayout from "@/components/dashboard-layout"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
 import Image from "next/image"
 import Link from "next/link"
 

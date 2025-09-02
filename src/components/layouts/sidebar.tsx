@@ -13,7 +13,7 @@ import {
 } from "@untitledui/icons"
 import { NavUser } from "./nav-user" // Import NavUser component
 import { useRouter } from "next/navigation"
-import { useUser } from "./user-provider"
+import { useUser } from "../user-provider"
 
 interface SidebarProps {
   activeItem: string

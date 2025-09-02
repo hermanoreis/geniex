@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react"
 import CourseOverview from "@/components/course/course-overview"
 import CourseDetails from "@/components/course/course-details"
 import CourseSyllabus from "@/components/course/course-syllabus"
-import DashboardLayout from "@/components/dashboard-layout"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
 
 export default function CoursePage({ params }: { params: { id: string } }) {
   const router = useRouter()
@@ -82,7 +82,7 @@ export default function CoursePage({ params }: { params: { id: string } }) {
 
   const handleLessonClick = (lessonId: string) => {
     console.log("Starting lesson:", lessonId)
-    // TODO: Navigate to lesson page
+    router.push(`/lesson/${lessonId}`)
   }
 
   const handleStartUnit = (unitId: string) => {

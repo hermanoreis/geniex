@@ -1,4 +1,4 @@
-import DashboardLayout from "@/components/dashboard-layout"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
 import ContinueStudying from "@/components/continue-studying"
 import StudyStreak from "@/components/study-streak"
 import MyTasks from "@/components/my-tasks"

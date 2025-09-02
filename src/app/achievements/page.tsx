@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
-import DashboardLayout from "@/components/dashboard-layout"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
 import {
   Trophy,
   Medal,
