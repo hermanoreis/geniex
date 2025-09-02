@@ -82,6 +82,16 @@ export default function LessonPage({ params }: LessonPageProps) {
     // TODO: Implement settings functionality
   }
 
+  const handleClock = () => {
+    console.log("Opening clock/timer...")
+    // TODO: Implement clock/timer functionality
+  }
+
+  const handleLayers = () => {
+    console.log("Opening layers/sections...")
+    // TODO: Implement layers/sections functionality
+  }
+
   return (
     <LessonLayout
       lessonTitle={lessonData.title}
@@ -90,6 +100,8 @@ export default function LessonPage({ params }: LessonPageProps) {
       onChatbot={handleChatbot}
       onReportError={handleReportError}
       onSettings={handleSettings}
+      onClock={handleClock}
+      onLayers={handleLayers}
     >
       <div className="p-8">
         <div className="max-w-4xl mx-auto">
