@@ -32,7 +32,7 @@ export default function Sidebar({ activeItem, setActiveItem, sidebarCollapsed, i
     { name: "Trilhas", icon: Route, path: "/" },
     { name: "Biblioteca", icon: BookClosed, path: "/" },
     { name: "Cronograma", icon: Calendar, path: "/" },
-    { name: "Genie Bot", icon: MessageSquare01, path: "/genie-bot" },
+    { name: "Chat Bot", icon: MessageSquare01, path: "/chat" },
   ]
 
   const funcionalidadesItems = [

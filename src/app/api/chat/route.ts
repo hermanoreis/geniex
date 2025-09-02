@@ -10,7 +10,7 @@ const openrouter = createOpenRouter({
   // Optional: Add your app details for usage tracking
   headers: {
     'HTTP-Referer': process.env.OPENROUTER_APP_URL || (process.env.NODE_ENV === 'production' ? 'https://your-domain.com' : 'http://localhost:3000'),
-    'X-Title': process.env.OPENROUTER_APP_NAME || 'GenieX',
+    'X-Title': process.env.OPENROUTER_APP_NAME || 'AI Learning Assistant',
   },
 });
 
@@ -33,7 +33,7 @@ export async function POST(req: Request) {
       model: openrouter(
         process.env.OPENROUTER_DEFAULT_MODEL || 'openai/gpt-4o-mini'
       ),
-      system: 'Você é o GenieX, um assistente de IA educacional especializado em ajudar estudantes. Seja útil, educativo e responda em português brasileiro.',
+      system: 'Você é um assistente de IA educacional especializado em ajudar estudantes. Seja útil, educativo e responda em português brasileiro.',
       messages: convertToModelMessages(messages),
       maxTokens: 2000,
       temperature: 0.7,

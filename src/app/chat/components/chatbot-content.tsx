@@ -11,7 +11,7 @@ import ChatHeader from "./chat-header"
 import ChatMessages from "./chat-messages"
 import ChatInput from "./chat-input"
 
-export default function GenieContent() {
+export default function ChatbotContent() {
   const [message, setMessage] = useState("")
   const [chatStarted, setChatStarted] = useState(false)
   const [currentTopic, setCurrentTopic] = useState("")

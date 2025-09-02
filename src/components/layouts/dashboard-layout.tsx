@@ -27,8 +27,8 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       case "/courselist":
         setActiveItem("Cursos")
         break
-      case "/genie-bot":
-        setActiveItem("Genie Bot")
+      case "/chat":
+        setActiveItem("Chat Bot")
         break
       case "/achievements":
         setActiveItem("Conquistas")
