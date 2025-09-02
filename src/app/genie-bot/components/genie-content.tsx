@@ -39,9 +39,7 @@ export default function GenieContent() {
     { text: "Dicas de estudo", icon: Lightbulb },
   ]
 
-  const handleSuggestionClick = (suggestion: string) => {
-    setMessage(suggestion)
-  }
+
 
   const handleSendMessage = (messageText: string = message) => {
     if (messageText.trim() && status === 'ready') {
