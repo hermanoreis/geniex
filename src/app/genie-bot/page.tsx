@@ -1,10 +1,13 @@
 import DashboardLayout from "@/components/layouts/dashboard-layout"
 import GenieContent from "./components/genie-content"
+import ChatLayout from "./components/chat-layout"
 
 export default function GeniePage() {
   return (
     <DashboardLayout>
-      <GenieContent />
+      <ChatLayout>
+        <GenieContent />
+      </ChatLayout>
     </DashboardLayout>
   )
 }
