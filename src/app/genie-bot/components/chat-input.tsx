@@ -83,13 +83,6 @@ export default function ChatInput({
             )}
           </div>
         </div>
-
-        {/* Disclaimer */}
-        <div className="text-center mt-3">
-          <p className="text-muted-foreground text-xs">
-            Inteligência Artificial Generativa pode cometer erros. Considere verificar informações importantes.
-          </p>
-        </div>
       </div>
     </div>
   )

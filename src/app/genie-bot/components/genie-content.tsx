@@ -3,18 +3,32 @@
 import { useState } from "react"
 import { Microphone01 as Mic, Send01 as Send } from "@untitledui/icons"
 import { BookOpen, FileText, HelpCircle, Lightbulb } from "lucide-react"
+import { useChat } from "@ai-sdk/react"
+import { DefaultChatTransport } from "ai"
 import { useUser } from "../../../components/user-provider"
 import Image from "next/image"
 import ChatHeader from "./chat-header"
-import ChatMessages, { ChatMessage } from "./chat-messages"
+import ChatMessages from "./chat-messages"
 import ChatInput from "./chat-input"
 
 export default function GenieContent() {
   const [message, setMessage] = useState("")
-  const [messages, setMessages] = useState<ChatMessage[]>([])
   const [chatStarted, setChatStarted] = useState(false)
   const [currentTopic, setCurrentTopic] = useState("")
   const { user } = useUser()
+
+  // Use the AI SDK useChat hook
+  const { messages, sendMessage, status, error } = useChat({
+    transport: new DefaultChatTransport({
+      api: '/api/chat',
+    }),
+    onFinish: () => {
+      // Chat has finished streaming
+    },
+    onError: (error) => {
+      console.error('Chat error:', error)
+    }
+  })
 
   const firstName = user.name.split(" ")[0]
 
@@ -30,33 +44,16 @@ export default function GenieContent() {
   }
 
   const handleSendMessage = (messageText: string = message) => {
-    if (messageText.trim()) {
-      const newUserMessage: ChatMessage = {
-        id: `user-${Date.now()}`,
-        content: messageText.trim(),
-        role: "user",
-        timestamp: new Date()
-      }
-      
+    if (messageText.trim() && status === 'ready') {
       // Start chat if it's the first message
       if (!chatStarted) {
         setChatStarted(true)
         setCurrentTopic(messageText.trim().slice(0, 50) + (messageText.length > 50 ? "..." : ""))
       }
       
-      setMessages(prev => [...prev, newUserMessage])
+      // Send message using AI SDK
+      sendMessage({ text: messageText.trim() })
       setMessage("")
-      
-      // Simulate AI response (replace with actual API call)
-      setTimeout(() => {
-        const aiResponse: ChatMessage = {
-          id: `ai-${Date.now()}`,
-          content: `Esta é uma resposta simulada para: "${messageText.trim()}". Em uma implementação real, isso viria da sua API de IA.`,
-          role: "assistant",
-          timestamp: new Date()
-        }
-        setMessages(prev => [...prev, aiResponse])
-      }, 1000)
     }
   }
 
@@ -64,19 +61,27 @@ export default function GenieContent() {
     console.log("Mic button clicked - voice recording functionality would go here")
   }
 
-  // Show chat interface if chat has started
-  if (chatStarted) {
+  // Show chat interface if chat has started or if there are messages
+  if (chatStarted || messages.length > 0) {
     return (
       <div className="h-full bg-background flex flex-col">
         <ChatHeader 
-          title={currentTopic}
+          title={currentTopic || "Nova conversa"}
           onTitleClick={() => console.log("Topic selector clicked")}
         />
         <ChatMessages messages={messages} />
         <ChatInput 
           onSendMessage={handleSendMessage}
           placeholder="Pergunte qualquer coisa..."
+          disabled={status !== 'ready'}
         />
+        {error && (
+          <div className="px-6 py-2 bg-red-50 border-t border-red-200">
+            <p className="text-red-600 text-sm">
+              Ocorreu um erro. Tente novamente.
+            </p>
+          </div>
+        )}
       </div>
     )
   }
@@ -116,11 +121,13 @@ export default function GenieContent() {
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Pergunte qualquer coisa"
               rows={3}
-              className="w-full bg-card border border-border rounded-xl px-6 py-4 pr-14 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
+              disabled={status !== 'ready'}
+              className="w-full bg-card border border-border rounded-xl px-6 py-4 pr-14 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none disabled:opacity-50 disabled:cursor-not-allowed"
             />
             <button
               onClick={message.trim() ? () => handleSendMessage() : handleMicClick}
-              className="absolute right-4 bottom-4 w-8 h-8 bg-primary hover:bg-primary/90 rounded-lg flex items-center justify-center transition-colors"
+              disabled={status !== 'ready'}
+              className="absolute right-4 bottom-4 w-8 h-8 bg-primary hover:bg-primary/90 rounded-lg flex items-center justify-center transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {message.trim() ? (
                 <Send className="w-4 h-4 text-primary-foreground" />
@@ -138,7 +145,8 @@ export default function GenieContent() {
                 <button
                   key={index}
                   onClick={() => handleSendMessage(suggestion.text)}
-                  className="bg-card hover:bg-card/80 border border-border rounded-xl py-2 px-4 flex items-center justify-center gap-3 text-center transition-colors group"
+                  disabled={status !== 'ready'}
+                  className="bg-card hover:bg-card/80 border border-border rounded-xl py-2 px-4 flex items-center justify-center gap-3 text-center transition-colors group disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
                     <Icon size={16} className="text-primary" />
