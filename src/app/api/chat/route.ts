@@ -35,7 +35,6 @@ export async function POST(req: Request) {
       ),
       system: 'Você é um assistente de IA educacional especializado em ajudar estudantes. Seja útil, educativo e responda em português brasileiro.',
       messages: convertToModelMessages(messages),
-      maxSteps: 1,
       temperature: 0.7,
     });
 
